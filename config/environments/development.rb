@@ -61,5 +61,17 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   
   config.hosts.clear
-
+  # mailer setting
+  config.action_mailer.default_url_options = {protocol: 'https', host: '3168366e2c204f46b7abc0527dd3e5bd.vfs.cloud9.us-east-2.amazonaws.com'}
+  # config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address => 'smtp.gmail.com',
+    :port => 587,
+    :user_name => 'waraiiinfo@gmail.com',
+    :password => 'waraii17',
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
 end
