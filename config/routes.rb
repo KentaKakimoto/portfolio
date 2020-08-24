@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   root 'pages#index'
   get 'pages/show'
   resources :users, :only => [:show]
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
+  post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
+  
 end
