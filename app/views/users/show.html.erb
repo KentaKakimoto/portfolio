@@ -6,11 +6,14 @@
 <a href="<%= followers_user_path(@user) %>">
   <p><%= "フォロワー数: #{@user.followed.count}" %></p>
 </a>
-<% unless @user == current_user %>
-  <% if current_user.following?(@user) %>
-    <%= link_to 'フォロー解除', unfollow_path(@user.id), method: :POST %>
-  <% else %>
-    <%= link_to 'フォロー', follow_path(@user.id), method: :POST %>
+
+<% if current_user.present? %>
+  <% unless @user == current_user %>
+    <% if current_user.following?(@user) %>
+      <%= link_to 'フォロー解除', unfollow_path(@user.id), method: :POST %>
+    <% else %>
+      <%= link_to 'フォロー', follow_path(@user.id), method: :POST %>
+    <% end %>
   <% end %>
 <% end %>
 

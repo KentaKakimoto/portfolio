@@ -17,6 +17,8 @@ class UsersController < ApplicationController
     render 'show_follower'
   end
   
+  
+  
   private
 
     def set_user

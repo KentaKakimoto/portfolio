@@ -2,11 +2,14 @@
   <% @user.following_user.each do |user| %>
     <p>
       <%= "id: #{user.id} name: #{user.name}" %>
-      <% if current_user.following?(user) %>
-        <%= link_to 'フォロー解除', unfollow_path(user.id), method: :POST %>
-      <% else %>
-        <%= link_to 'フォロー', follow_path(user.id), method: :POST %>
+      <% if current_user.present? %>
+        <% if current_user.present? & current_user.following?(user) %>
+          <%= link_to 'フォロー解除', unfollow_path(user.id), method: :POST %>
+        <% else %>
+          <%= link_to 'フォロー', follow_path(user.id), method: :POST %>
+        <% end %>
       <% end %>
+
       <%= link_to "show", user_path(user) %>
     </p>
   <% end %>
