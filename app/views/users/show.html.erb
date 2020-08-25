@@ -1,40 +1,21 @@
 <h2>ID<%= @user.id %>のユーザページ </h2>
 <img src=<%= @user.profile_image %> class = "icon_image">
-<p><%= "フォロー数: #{@user.follower.count}" %></p>
-<p><%= "フォロワー数: #{@user.followed.count}" %></p>
+<a href="<%= following_user_path(@user) %>">
+  <p><%= "フォロー数: #{@user.follower.count}" %></p>
+</a>
+<a href="<%= followers_user_path(@user) %>">
+  <p><%= "フォロワー数: #{@user.followed.count}" %></p>
+</a>
 <% unless @user == current_user %>
   <% if current_user.following?(@user) %>
-    <%= link_to 'フォロー外す', unfollow_path(@user.id), method: :POST %>
+    <%= link_to 'フォロー解除', unfollow_path(@user.id), method: :POST %>
   <% else %>
-    <%= link_to 'フォローする', follow_path(@user.id), method: :POST %>
+    <%= link_to 'フォロー', follow_path(@user.id), method: :POST %>
   <% end %>
 <% end %>
-<p></p>
 
-<h3>フォロー一覧</h3>
-  <% @user.following_user.where.not(id: current_user.id).each do |user| %>
-    <p>
-      <%= "id: #{user.id} email: #{user.email}" %>
-      <% if current_user.following?(user) %>
-        <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
-      <% else %>
-        <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
-      <% end %>
-      <%= link_to "show", user_path(user) %>
-    </p>
-  <% end %>
-<h3>フォロワー一覧</h3>
-  <% @user.follower_user.where.not(id: current_user.id).each do |user| %>
-    <p>
-      <%= "id: #{user.id} email: #{user.email}" %>
-      <% if current_user.following?(user) %>
-        <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
-      <% else %>
-        <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
-      <% end %>
-      <%= link_to "show", user_path(user) %>
-    </p>
-  <% end %>
+
+
 <p>自己紹介 <%= @user.self_introduction %></p>
 <p>エリア <%= @user.area %></p>
 <p>ジャンル <%= @user.genre %></p>
