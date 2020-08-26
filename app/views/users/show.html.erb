@@ -1,5 +1,6 @@
 <h2>ID<%= @user.id %>のユーザページ </h2>
 <img src=<%= @user.profile_image %> class = "icon_image">
+<p>名前 <%= @user.name %></p>
 <a href="<%= following_user_path(@user) %>">
   <p><%= "フォロー数: #{@user.follower.count}" %></p>
 </a>
@@ -16,7 +17,6 @@
     <% end %>
   <% end %>
 <% end %>
-
 
 
 <p>自己紹介 <%= @user.self_introduction %></p>

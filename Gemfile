@@ -57,3 +57,5 @@ gem 'devise'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'faker'
+gem "faker-japanese"
+gem 'pagy'
