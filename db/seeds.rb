@@ -1,4 +1,4 @@
-99.times do |n|
+2.times do |n|
   name  = Faker::Name.name
   self_introduction = ["お笑いが大好きです。よろしくおねがいします。","相方探してます。よろしくおねがいします！","一緒に天下取りましょう！","お笑いに人生かけてます。","ピン芸人でしたが寂しいのでコンビ組みたいです。","トリオ組みたい人いませんか"].sample
   area =["北海道", "東北","関東","北陸","東海", "近畿", "中国", "四国","九州", "沖縄"].sample
@@ -11,6 +11,7 @@
   email = "example-#{n+1}@waraii.org"
   password = "password"
   
+  
   User.create!(name:  name,
                self_introduction: self_introduction,
                genre: genre,
@@ -22,8 +23,8 @@
                email: email,
                area: area,
                password:              password,
-               password_confirmation: password
+               password_confirmation: password,
+               confirmed_at: Time.now
                )
-               User.skip_confirmation!
                User.save!
 end
