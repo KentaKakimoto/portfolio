@@ -18,6 +18,21 @@
   <% end %>
 <% end %>
 
+<% if @user.id == current_user.id %>
+
+<% else %>
+  <% if @isRoom == true %>
+    <p><a href="/rooms/<%= @roomId %>">チャットへ</a>
+  <% else %>
+    <%= form_for @room do |f| %>
+      <%= fields_for @entry do |e| %>
+        <%= e.hidden_field :user_id, :value=> @user.id %>
+      <% end %>
+      <%= f.submit "チャットを始める" %>
+    <% end %>
+  <% end %>
+<% end %>
+
 
 <p>自己紹介 <%= @user.self_introduction %></p>
 <p>エリア <%= @user.area %></p>
@@ -27,3 +42,4 @@
 <p>芸歴 <%= @user.career %></p>
 <p>国籍 <%= @user.country %></p>
 <p>所属 <%= @user.organization %></p>
+
