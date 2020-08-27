@@ -24,6 +24,10 @@ class UsersController < ApplicationController
     end
   end
   
+  def index
+    @users=User.all
+  end
+  
   def following
       @user  = User.find(params[:id])
       @users = @user.following_user
@@ -35,7 +39,6 @@ class UsersController < ApplicationController
     @users = @user.follower_user
     render 'show_follower'
   end
-  
   
   
   private
