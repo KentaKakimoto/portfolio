@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  get 'users/show'
+ 
   devise_for :users, controllers: { registrations: 'registrations' } 
   root 'pages#index'
-  get 'pages/show'
+  get "users/:id" => "users#show", as: :mypage
+  get 'rooms/index' => 'rooms#index'
   resources :messages, :only => [:create]
   resources :rooms, :only => [:create, :show, :index]
   post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする

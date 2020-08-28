@@ -1,0 +1,9 @@
+<h1>メッセージ一覧</h1>
+<hr>
+<% @rooms.each do |r| %>
+  <p>相手ユーザ名<a href="/rooms/<%= r.id %>"><%= opponent_user(r) %></a></p>
+<hr>
+<% end %>
+
+<p><a href="/users/<%= current_user.id %>" class="btn btn-primary">マイページに戻る</a></p>
+<p><a href="/" class="btn btn-info">トップに戻る</a></p>

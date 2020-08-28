@@ -3,9 +3,7 @@ class PagesController < ApplicationController
   include Pagy::Backend
   def index
      @pagy, @users = pagy(User.all)
-    
   end
 
-  def show
-  end
+  
 end
