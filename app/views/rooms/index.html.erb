@@ -2,7 +2,20 @@
 <hr>
 <% @rooms.each do |r| %>
   <p>相手ユーザ名<a href="/rooms/<%= r.id %>"><%= opponent_user(r) %></a></p>
+  <% messages = Message.where(room_id: r.id) %>
+  <% read_flag = 0 # 0だったら未読なし、1だったら未読あり%>
+   <% messages.each do |message|%>
+     <% if message.read_flag == 1 %>
+        <% read_flag = 1%>
+     <% end %>
+   <% end %>
+   <% if read_flag == 1%>
+    <p>未読あり</p>　
+　<% else %>
+     <p>未読なし</p>
+  <% end %>
 <hr>
+  
 <% end %>
 
 <p><a href="/users/<%= current_user.id %>" class="btn btn-primary">マイページに戻る</a></p>
