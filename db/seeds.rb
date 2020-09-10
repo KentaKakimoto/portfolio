@@ -22,7 +22,7 @@ User.create!(name:  "ユーザワン",
   gender = ["男","女", "その他"].sample
   career = ["1年以下","2年","3年","4年","5年以上"].sample
   country = ["日本","海外"].sample
-  organization = ["フリー","吉本","松竹","人力車","マセキ","ワタナベ","ホリプロコム","その他"].sample
+  organization = ["フリー","吉本","松竹","人力舎","マセキ","ワタナベ","ホリプロコム","その他"].sample
   email = "example-#{n+1}@waraii.org"
   password = "aaaaaa"
   

@@ -2,18 +2,21 @@
 <hr>
 <% @rooms.each do |r| %>
   <p>相手ユーザ名<a href="/rooms/<%= r.id %>"><%= opponent_user(r) %></a></p>
-  <% messages = Message.where(room_id: r.id) %>
-   <% p 'start' %>
-   <% p messages %>
-    <% p 'end' %>
+  <% messages = Message.where.not(user_id: current_user).where(room_id: r.id) %>
+  <% if messages.present? %>
+   <% read_flag = false # デフォルト未読 一件でも既読があればtrueにする %>
    <% messages.each do |message|%>
      <% if message.read_flag == true %>
-       <p>未読なし</p>
-　   <% else %>
-       <p>未読あり</p>
+       <% read_flag = 1 %>
      <% end %>
-<hr>
   <% end %>
+   <% if read_flag == false %>
+     <p>未読あり</p>
+   <% end %>
+ <% else %>
+   <p>相手からの返信なし</p>
+ <% end %>
+ <hr>
 <% end %>
 
 <p><a href="/users/<%= current_user.id %>" class="btn btn-primary">マイページに戻る</a></p>

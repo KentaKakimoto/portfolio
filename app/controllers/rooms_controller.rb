@@ -16,6 +16,13 @@ before_action :authenticate_user!, :only => [:create, :show, :index]
     @room = Room.find(params[:id])
     if Entry.where(:user_id => current_user.id, :room_id => @room.id).present?
       @messages = @room.messages
+      @messages_read_flag = Message.where.not(user_id: current_user).where(room_id: @room.id)
+      @messages_read_flag.each do |message|
+       if message.read_flag == false
+        message.read_flag = true
+       end
+       message.save
+      end
       @message = Message.new
       @entries = @room.entries
     else
