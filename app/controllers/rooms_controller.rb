@@ -2,7 +2,7 @@ class RoomsController < ApplicationController
 before_action :authenticate_user!, :only => [:create, :show, :index] 
   def index
     @entries = current_user.entries
-    @rooms = current_user.rooms.includes(:messages).order("messages.updated_at desc")
+    @rooms = current_user.rooms.includes(:messages).order("messages.created_at desc")
   end
   
   def create
