@@ -1,4 +1,4 @@
-<% if user_signed_in? %>
+  <% if user_signed_in? %>
 
   <h2>ユーザー一覧画面</h2>
   <% @users.all.where.not(id: current_user.id).each do |user| %>
