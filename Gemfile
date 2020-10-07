@@ -59,3 +59,8 @@ gem 'mini_magick'
 gem 'faker'
 gem "faker-japanese"
 gem 'pagy'
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
